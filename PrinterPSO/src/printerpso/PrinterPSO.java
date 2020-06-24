@@ -21,10 +21,16 @@ public class PrinterPSO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+      
         MainController.getInstance();
-        Process nuevo1 = new Process("1");
-        Process nuevo2 = new Process("2");
-        Process nuevo3 = new Process("3");
+        Process nuevo1 = new Process("Proceso 1");
+        Process nuevo2 = new Process("Proceso 2");
+        Process nuevo3 = new Process("Proceso 3");
+
+      
+        MainController.getInstance().AddProcess(nuevo1);
+        MainController.getInstance().AddProcess(nuevo2);
+        MainController.getInstance().AddProcess(nuevo3);
         
         MainController.getInstance().getMailbox().addProcess(nuevo1);
         MainController.getInstance().getMailbox().addProcess(nuevo2);
@@ -46,6 +52,8 @@ public class PrinterPSO {
         printer.imprimir();
         printer.imprimir();
         printer.imprimir();
+ 
+        mc.getUIController().showWindow();
     }
     
 }
