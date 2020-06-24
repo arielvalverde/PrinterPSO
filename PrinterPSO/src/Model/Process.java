@@ -23,6 +23,10 @@ public class Process {
 
     public Process() {
     }
+    
+    public Process(String ID) {
+        this.ID = ID;
+    }
 
     public String getID() {
         return ID;

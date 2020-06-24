@@ -17,14 +17,12 @@ public class MainController {
     
     private ArrayList<Model.Process> processes;
     private MailBox mailbox;
-    //private UiController uiController;
+    private UIController uiController;
 
     private MainController() {
-        
         processes = new ArrayList();
         mailbox = new MailBox();
-        //uiController = new UiController(this);
-        //ParametersController.getInstance();
+        uiController = new UIController(this);
     }
     
     public static MainController getInstance(){
@@ -79,6 +77,9 @@ public class MainController {
         processes.add(proceso);
     }
 
+    public UIController getUIController(){
+        return uiController;
+    }
 
     /*public void executeCommand(String text) {
         String[] commands = text.split("\n");
