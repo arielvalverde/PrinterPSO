@@ -43,6 +43,9 @@ public class PrinterPSO {
         nuevo3.send(m3);
         
         printer.imprimir();
+        printer.imprimir();
+        printer.imprimir();
+        printer.imprimir();
     }
     
 }
