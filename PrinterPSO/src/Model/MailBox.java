@@ -6,6 +6,8 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  *
@@ -13,53 +15,46 @@ import java.util.ArrayList;
  */
 public class MailBox {
     public ArrayList<Process> sendprocesses;
-    public ArrayList<Process> receiveprocesses;
-    public MessageQueue messages;
-    private MainController controller;
+    public Printer printer;
+    public Queue<Message> messages;
 
-    public Mailbox(MainController pController) {
-        sendprocesses = new ArrayList<Process>();
-        receiveprocesses = new ArrayList<Process>();
-        messages = new MessageQueue();
-        this.controller = pController;
+    public MailBox() {
+        this.sendprocesses = new ArrayList<Process>();
+        this.printer = new Printer();
+        this.messages = new LinkedList<Message>();
+    }
+
+    public ArrayList<Process> getSendprocesses() {
+        return sendprocesses;
+    }
+
+    public void setSendprocesses(ArrayList<Process> sendprocesses) {
+        this.sendprocesses = sendprocesses;
+    }
+
+    public Printer getPrinter() {
+        return printer;
+    }
+
+    public void setPrinter(Printer printer) {
+        this.printer = printer;
+    }
+
+    public Queue getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Queue messages) {
+        this.messages = messages;
     }
     
-    public void addMessage(Message pMessage){
-        messages.addMessage(pMessage);
-    }
-    
-    public boolean findList_Send(String ID){
-        for(int largo=0; largo < sendprocesses.size();largo++){
-            if(sendprocesses.get(largo).getID()==ID){
-                return true;
-            }
+    public Message imprimir(){
+        if(messages.size()==0){
+            System.out.print("No hay nada para imprimir");
         }
-        return false;
-    }
-    
-    public boolean findList_Receive(String ID){
-        for(int largo=0; largo < receiveprocesses.size();largo++){
-            if(receiveprocesses.get(largo).getID()==ID && receiveprocesses.get(largo).bloqueo_recibir==false){
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public Process select_Received(){
-        for(int largo=0; largo < receiveprocesses.size();largo++){
-            if(receiveprocesses.get(largo).getBloqueo_recibir()==false){
-                return receiveprocesses.get(largo);
-            }
+        else{
+            return messages.poll();
         }
         return null;
-    }
-    
-    public void addListSend(Process pProcess){
-        sendprocesses.add(pProcess);
-    }
-    
-    public void addListReceive(Process pProcess){
-        receiveprocesses.add(pProcess);
     }
 }

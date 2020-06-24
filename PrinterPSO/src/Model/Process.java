@@ -13,11 +13,24 @@ import java.util.ArrayList;
  */
 public class Process {
     private Message currentMessage;
-    private Mailbox mailboxAssociated;
+    //private Mailbox mailboxAssociated;
     public  ArrayList<Message> messagessend = new ArrayList<Message>();
     public  ArrayList<Message> messagesprereceive = new ArrayList<Message>();
     public  ArrayList<Message> messagesreceive = new ArrayList<Message>();
     public  boolean bloqueo_enviar;
     public  boolean bloqueo_recibir;
     private String ID;
+
+    public Process() {
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+    
+    
 }
