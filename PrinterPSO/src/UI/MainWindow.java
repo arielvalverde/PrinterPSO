@@ -206,7 +206,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+        new PrinterStatus(this, true).setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void CB_ProcessesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_ProcessesItemStateChanged
