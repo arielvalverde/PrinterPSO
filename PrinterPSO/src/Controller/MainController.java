@@ -14,7 +14,6 @@ import Model.MailBox;
  */
 public class MainController {
     private static MainController instance;
-    
     private ArrayList<Model.Process> processes;
     private MailBox mailbox;
     private UIController uiController;

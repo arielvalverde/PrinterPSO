@@ -20,7 +20,6 @@ public class MailBox {
 
     public MailBox() {
         this.sendprocesses = new ArrayList<Process>();
-        this.printer = new Printer();
         this.messages = new LinkedList<Message>();
     }
 
@@ -30,6 +29,10 @@ public class MailBox {
 
     public void setSendprocesses(ArrayList<Process> sendprocesses) {
         this.sendprocesses = sendprocesses;
+    }
+    
+    public void addProcess(Process process){
+        sendprocesses.add(process);
     }
 
     public Printer getPrinter() {
@@ -48,13 +51,16 @@ public class MailBox {
         this.messages = messages;
     }
     
-    public Message imprimir(){
-        if(messages.size()==0){
-            System.out.print("No hay nada para imprimir");
+    public boolean existProcess(String ID){
+        for(Process process: sendprocesses){
+            if(process.getID().equals(ID)){
+                return true;
+            }
         }
-        else{
-            return messages.poll();
-        }
-        return null;
+        return false;
+    }
+    
+    public void addQueue(Message message){
+        messages.add(message);  
     }
 }

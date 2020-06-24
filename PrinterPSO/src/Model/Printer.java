@@ -5,6 +5,8 @@
  */
 package Model;
 
+import Controller.MainController;
+
 /**
  *
  * @author ariel
@@ -15,7 +17,14 @@ public class Printer {
     public Printer() {
     }
     
-    public void imprimir(){
-        
+    public Message imprimir(){
+        if(MainController.getInstance().getMailbox().messages.isEmpty()){
+            System.out.print("No hay nada para imprimir");
+        }
+        else{
+            System.out.print("Imprimiendo");
+            return MainController.getInstance().getMailbox().messages.poll();
+        }
+        return null;
     }
 }
