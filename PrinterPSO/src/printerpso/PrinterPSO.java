@@ -21,20 +21,28 @@ public class PrinterPSO {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        MainController mc = MainController.getInstance();
-        Process nuevo1 = new Process();
-        Process nuevo2 = new Process();
+        MainController.getInstance();
+        Process nuevo1 = new Process("1");
+        Process nuevo2 = new Process("2");
+        Process nuevo3 = new Process("3");
+        
+        MainController.getInstance().getMailbox().addProcess(nuevo1);
+        MainController.getInstance().getMailbox().addProcess(nuevo2);
+        //MainController.getInstance().getMailbox().addProcess(nuevo3);
+        
         Printer printer = new Printer();
+        MainController.getInstance().getMailbox().setPrinter(printer);
+        
         Message m1 = new Message();
         Message m2 = new Message();
         Message m3 = new Message();
-        mc.getMailbox().imprimir();
-        mc.getMailbox().getMessages().add(m1);
-        mc.getMailbox().getMessages().add(m2);
-        mc.getMailbox().getMessages().add(m3);
-        System.out.print(mc.getMailbox().getMessages().size());
-        mc.getMailbox().imprimir();
-        System.out.print(mc.getMailbox().getMessages().size());
+        
+        
+        nuevo1.send(m1);
+        nuevo2.send(m2);
+        nuevo3.send(m3);
+        
+        printer.imprimir();
     }
     
 }
