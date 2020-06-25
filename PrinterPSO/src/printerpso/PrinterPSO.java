@@ -53,7 +53,7 @@ public class PrinterPSO {
         printer.imprimir();
         printer.imprimir();
  
-        mc.getUIController().showWindow();
+        MainController.getInstance().getUIController().showWindow();
     }
     
 }
