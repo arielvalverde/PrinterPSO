@@ -20,10 +20,6 @@ public class Process {
     public Process(String pID) {
         ID = pID;
     }
-    
-    public Process(String ID) {
-        this.ID = ID;
-    }
 
     public String getID() {
         return ID;
