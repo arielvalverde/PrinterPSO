@@ -21,39 +21,33 @@ public class PrinterPSO {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException {
-        // TODO code application logic here
-      
         MainController.getInstance();
         Process nuevo1 = new Process("Proceso 1");
         Process nuevo2 = new Process("Proceso 2");
         Process nuevo3 = new Process("Proceso 3");
+        Process nuevo4 = new Process("Proceso 4");
+        Process nuevo5 = new Process("Proceso 5");
 
       
         MainController.getInstance().AddProcess(nuevo1);
         MainController.getInstance().AddProcess(nuevo2);
         MainController.getInstance().AddProcess(nuevo3);
+        MainController.getInstance().AddProcess(nuevo4);
+        MainController.getInstance().AddProcess(nuevo5);
         
         MainController.getInstance().getMailbox().addProcess(nuevo1);
         MainController.getInstance().getMailbox().addProcess(nuevo2);
-        //MainController.getInstance().getMailbox().addProcess(nuevo3);
+        MainController.getInstance().getMailbox().addProcess(nuevo3);
+        MainController.getInstance().getMailbox().addProcess(nuevo4);
+        
+        /*
+        Proceso 5 no pertenece al mailbox
+        MainController.getInstance().getMailbox().addProcess(nuevo5);
+        */
         
         Printer printer = new Printer();
         MainController.getInstance().getMailbox().setPrinter(printer);
-        
-        Message m1 = new Message();
-        Message m2 = new Message();
-        Message m3 = new Message();
-        
-        
-        nuevo1.send(m1);
-        nuevo2.send(m2);
-        nuevo3.send(m3);
-        
-        printer.imprimir("C:\\Users\\ariel\\Desktop\\Nueva carpeta","Hola");
-        printer.imprimir("C:\\Users\\ariel\\Desktop\\Nueva carpeta","Hola");
-        printer.imprimir("C:\\Users\\ariel\\Desktop\\Nueva carpeta","Hola");
-        printer.imprimir("C:\\Users\\ariel\\Desktop\\Nueva carpeta","Hola");
- 
+
         MainController.getInstance().getUIController().showWindow();
     }
     

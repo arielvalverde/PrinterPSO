@@ -5,9 +5,12 @@
  */
 package Model;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -62,5 +65,23 @@ public class MailBox {
     
     public void addQueue(Message message){
         messages.add(message);  
+    }
+    
+    public String[][] queueToTable(){
+        String[][] contents = new String [messages.size()][2];
+        for (int i = 0; i < messages.size(); i++){
+            System.out.println(((Message) messages.toArray()[i]).getSourceID());
+            contents[i][0] = ((Message) messages.toArray()[i]).getSourceID();
+            contents[i][1] = ((Message) messages.toArray()[i]).getContent();
+        }
+        return contents;
+    }
+
+    public void printNext() {
+        try {
+            printer.print(messages.poll());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MailBox.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

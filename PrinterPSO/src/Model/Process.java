@@ -32,10 +32,10 @@ public class Process {
     public void send(Message mensaje){
         if(MainController.getInstance().getMailbox().existProcess(ID)==true){
             MainController.getInstance().getMailbox().addQueue(mensaje);
-            System.out.print("Enviado a la cola");
+            System.out.println("Enviado a la cola");
         }
         else{
-            System.out.print("No pertenece a la lista del Mailbox");
+            System.out.println("No pertenece a la lista del Mailbox");
         }
     }
     

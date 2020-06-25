@@ -5,43 +5,33 @@
  */
 package Model;
 
-import java.io.File;
 
 /**
  *
  * @author ariel
  */
 public class Message {
-    private String destinationID;
-    private File content;
-    private int priority;
+    private String sourceID;
+    private String content;
 
-    public Message() {
-    }
-
-    public String getDestinationID() {
-        return destinationID;
-    }
-
-    public void setDestinationID(String destinationID) {
-        this.destinationID = destinationID;
-    }
-
-    public File getContent() {
-        return content;
-    }
-
-    public void setContent(File content) {
+    public Message(String sourceID, String content) {
+        this.sourceID = sourceID;
         this.content = content;
     }
 
-    public int getPriority() {
-        return priority;
+    public String getSourceID() {
+        return sourceID;
     }
 
-    public void setPriority(int priority) {
-        this.priority = priority;
+    public void setSourceID(String destinationID) {
+        this.sourceID = destinationID;
     }
-    
-    
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }    
 }

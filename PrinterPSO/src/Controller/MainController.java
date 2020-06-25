@@ -7,6 +7,7 @@ package Controller;
 
 import java.util.ArrayList;
 import Model.MailBox;
+import Model.Message;
 
 /**
  *
@@ -79,31 +80,16 @@ public class MainController {
     public UIController getUIController(){
         return uiController;
     }
+    
+    public void printFile(String processID, String content){
+        getProcess(processID).send(new Message(processID, content));
+    }
 
-    /*public void executeCommand(String text) {
-        String[] commands = text.split("\n");
-        for(String str : commands) {
-            String[] subString = str.split("[()]");
-            String[] parameters = subString[1].split(",");
-            if (subString[0].equals("create")){
-                //CREATE COMMAND
-                Model.Process process = new Model.Process(parameters[0],mailbox);
-                getMailbox().addListSend(process);
-                getMailbox().addListReceive(process);
-                AddProcess(process);
-            } else if (subString[0].equals("send")){
-                //SEND COMMAND send(Destination, Source, Mesage)
-                Message mensaje = new Message(parameters[0], parameters[1], parameters[2]);
-                Model.Process process = getProcess(parameters[0]);
-                process.sendMessage(mensaje,parameters[0]);
-            } else if (subString[0].equals("receive")){
-                //RECIEVE COMMAND
-                Model.Process process = getProcess(parameters[0]);
-                process.receiveMessage(parameters[1]);
-            } else {
-                //INVALID COMMAND
-            }
-            
-        }
-    }*/
+    public String[][] getQueueTable() {
+        return mailbox.queueToTable();
+    } 
+
+    public void printNext() {
+        mailbox.printNext();
+    }
 }
