@@ -5,6 +5,7 @@
  */
 package Model;
 
+import Controller.MainController;
 import java.util.ArrayList;
 
 /**
@@ -13,19 +14,11 @@ import java.util.ArrayList;
  */
 public class Process {
     private Message currentMessage;
-    //private Mailbox mailboxAssociated;
-    public  ArrayList<Message> messagessend = new ArrayList<Message>();
-    public  ArrayList<Message> messagesprereceive = new ArrayList<Message>();
-    public  ArrayList<Message> messagesreceive = new ArrayList<Message>();
     public  boolean bloqueo_enviar;
-    public  boolean bloqueo_recibir;
     private String ID;
 
-    public Process() {
-    }
-    
-    public Process(String ID) {
-        this.ID = ID;
+    public Process(String pID) {
+        ID = pID;
     }
 
     public String getID() {
@@ -36,5 +29,14 @@ public class Process {
         this.ID = ID;
     }
     
+    public void send(Message mensaje){
+        if(MainController.getInstance().getMailbox().existProcess(ID)==true){
+            MainController.getInstance().getMailbox().addQueue(mensaje);
+            System.out.print("Enviado a la cola");
+        }
+        else{
+            System.out.print("No pertenece a la lista del Mailbox");
+        }
+    }
     
 }

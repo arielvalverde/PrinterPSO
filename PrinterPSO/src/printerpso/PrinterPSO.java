@@ -9,6 +9,7 @@ import Controller.MainController;
 import Model.Printer;
 import Model.Process;
 import Model.Message;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -19,18 +20,41 @@ public class PrinterPSO {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
-        MainController mc = MainController.getInstance();
+      
+        MainController.getInstance();
         Process nuevo1 = new Process("Proceso 1");
         Process nuevo2 = new Process("Proceso 2");
         Process nuevo3 = new Process("Proceso 3");
+
+      
+        MainController.getInstance().AddProcess(nuevo1);
+        MainController.getInstance().AddProcess(nuevo2);
+        MainController.getInstance().AddProcess(nuevo3);
+        
+        MainController.getInstance().getMailbox().addProcess(nuevo1);
+        MainController.getInstance().getMailbox().addProcess(nuevo2);
+        //MainController.getInstance().getMailbox().addProcess(nuevo3);
+        
         Printer printer = new Printer();
-        mc.AddProcess(nuevo1);
-        mc.AddProcess(nuevo2);
-        mc.AddProcess(nuevo3);
-                
-        mc.getUIController().showWindow();
+        MainController.getInstance().getMailbox().setPrinter(printer);
+        
+        Message m1 = new Message();
+        Message m2 = new Message();
+        Message m3 = new Message();
+        
+        
+        nuevo1.send(m1);
+        nuevo2.send(m2);
+        nuevo3.send(m3);
+        
+        printer.imprimir("C:\\Users\\ariel\\Desktop\\Nueva carpeta","Hola");
+        printer.imprimir("C:\\Users\\ariel\\Desktop\\Nueva carpeta","Hola");
+        printer.imprimir("C:\\Users\\ariel\\Desktop\\Nueva carpeta","Hola");
+        printer.imprimir("C:\\Users\\ariel\\Desktop\\Nueva carpeta","Hola");
+ 
+        MainController.getInstance().getUIController().showWindow();
     }
     
 }

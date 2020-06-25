@@ -4,18 +4,44 @@
  * and open the template in the editor.
  */
 package Model;
+
+import java.io.File;
+
 /**
  *
  * @author ariel
  */
 public class Message {
     private String destinationID;
-    private String sourceID;
-    private int messageLenght;
-    private String controlInformation;
-    private String messageContent;
+    private File content;
     private int priority;
 
     public Message() {
     }
+
+    public String getDestinationID() {
+        return destinationID;
+    }
+
+    public void setDestinationID(String destinationID) {
+        this.destinationID = destinationID;
+    }
+
+    public File getContent() {
+        return content;
+    }
+
+    public void setContent(File content) {
+        this.content = content;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+    
+    
 }
