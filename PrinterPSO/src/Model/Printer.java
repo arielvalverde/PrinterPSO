@@ -12,6 +12,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -24,20 +25,24 @@ public class Printer {
     public Printer() {
     }
     
-    public Message imprimir(String dest, String content) throws FileNotFoundException{
+    public Message imprimir(String dest, Message content) throws FileNotFoundException{
         if(MainController.getInstance().getMailbox().messages.isEmpty()){
             System.out.print("No hay nada para imprimir");
         }
         else{
-            System.out.print("Imprimiendo");
-            PdfWriter writer = new PdfWriter(dest);
-            PdfDocument pdf = new PdfDocument(writer);
-
-            Document document = new Document(pdf);
-            document.add(new Paragraph(content));
-            document.close();
-            return MainController.getInstance().getMailbox().messages.poll();
-        }
+            File file = new File(dest);
+            try{
+                FileWriter fileW = new FileWriter(dest);
+                fileW.write(  "Destination ID: " + content.getSourceID() 
+                            + "\n" 
+                            + "Content: " + content.getContent());
+                fileW.close();
+                System.out.println("Documento impreso");
+            }
+            catch(Exception e){
+                System.out.println("Fallo al imprimir");
+            }
+            }
         return null;
     }
 }
