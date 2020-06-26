@@ -79,7 +79,8 @@ public class MailBox {
 
     public void printNext() {
         try {
-            printer.print(messages.poll());
+            if(!messages.isEmpty())
+                printer.print(messages.poll());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MailBox.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -29,9 +29,11 @@ public class Printer {
     }
     
     public void print(Message content) throws FileNotFoundException{
+        if(content == null){
+            return;
+        }
         String dest = "C:\\Printer\\" + Integer.toString(counter++) + ".txt";
         File file = new File(dest);
-        
         try {
             BufferedWriter writer;
             writer = new BufferedWriter(new FileWriter(file));
