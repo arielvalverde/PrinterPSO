@@ -5,12 +5,18 @@
  */
 package Model;
 
+import UI.MainWindow;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,16 +29,16 @@ public class Printer {
     }
     
     public void print(Message content) throws FileNotFoundException{
-        String dest = "C:\\Printer\\" + Integer.toString(counter++) + ".pdf";
+        String dest = "C:\\Printer\\" + Integer.toString(counter++) + ".txt";
         File file = new File(dest);
-
-        PdfWriter writer = new PdfWriter(file.getAbsolutePath());
-        PdfDocument pdf = new PdfDocument(writer);
-
-        Document document = new Document(pdf);
-        document.add(new Paragraph("Destination ID: " + content.getSourceID()));
-        document.add(new Paragraph("Content: " + content.getContent()));
-
-        document.close();
+        
+        try {
+            BufferedWriter writer;
+            writer = new BufferedWriter(new FileWriter(file));
+            writer.write(content.getContent());
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
